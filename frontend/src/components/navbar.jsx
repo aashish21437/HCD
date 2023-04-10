@@ -9,25 +9,36 @@ export default function NavBar({logo, rel, bg=true}){
     const[isAcadClicked, setAcadClicked] = useState(false);
     const[isPeoplesClicked, setPeoplesClicked] = useState(false);
     const[isResearchClicked, setResearchClicked] = useState(false);
+    const[isAboutClicked, setAboutClicked] = useState(false);
     const leaveHandler=()=>{
         setResearchClicked(false);
         setPeoplesClicked(false);
         setAcadClicked(false); 
+        setAboutClicked(false);
     }
     const acadClickHandler=()=>{
         setResearchClicked(false);
         setPeoplesClicked(false);
         setAcadClicked(true);
+        setAboutClicked(false);
     }
     const peepClickHandler=()=>{
         setAcadClicked(false);
         setResearchClicked(false);
         setPeoplesClicked(true);
+        setAboutClicked(false);
     }
     const resClickHandler=()=>{
         setAcadClicked(false);
         setPeoplesClicked(false);
         setResearchClicked(true);
+        setAboutClicked(false);
+    }
+    const abtClickHandler=()=>{
+        setAcadClicked(false);
+        setPeoplesClicked(false);
+        setResearchClicked(false);
+        setAboutClicked(true);
     }
 
     return(
@@ -46,7 +57,18 @@ export default function NavBar({logo, rel, bg=true}){
                     )
                 }
                 <div id='navbar' className='font-Archivo text-[#444343] my-20'>
-                    <Link className="w-[90%] text-center mx-5 hover:bg-[#f1f1f165] rounded-[0.5rem]" to='/'>ABOUT</Link>
+                    {/* <Link className="w-[90%] text-center mx-5 hover:bg-[#f1f1f165] rounded-[0.5rem]" to='/'>ABOUT</Link>
+
+                    <div className="navSep">|</div> */}
+
+                    <div className={isAboutClicked?"Selected w-[90%] text-center mx-5 hover:bg-[#f1f1f165] rounded-[0.5rem]" :" w-[90%] text-center mx-5"} onMouseOver={abtClickHandler} onMouseOut={leaveHandler}>ABOUT
+                        {isAboutClicked&&<div hidden={true} className='SelectedContent'>
+                            <div  className='w-[80%] h-[0.1rem] bg-[#444343]'></div>
+                            <Link id="subHeading" to='/gallery'>Gallery</Link>
+                            <Link id="subHeading" to='/awards'>Awards</Link>
+                            <Link id="subHeading" to='/conferences'>Conferences</Link>
+                        </div>}
+                    </div>
 
                     <div className="navSep">|</div>
 
